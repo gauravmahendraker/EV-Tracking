@@ -7,6 +7,7 @@ const app= express()
 const expressLayouts = require('express-ejs-layouts')
 
 const indexRouter = require('./routes/index')
+const driverRouter = require('./routes/drivers')
 
 app.set('view engine','ejs')
 app.set('views', __dirname + '/views')
@@ -32,6 +33,9 @@ client.connect(err => {
 });
 
 app.use('/', indexRouter)
+app.use('/drivers',driverRouter)
+
+
 app.listen( process.env.PORT || 3000)
 // app.listen(3000)
 

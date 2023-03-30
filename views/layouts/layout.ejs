@@ -91,6 +91,7 @@
         body {
             margin: 0;
             padding: 0;
+            z-index: -1;
         }
 
         #map {
@@ -101,7 +102,12 @@
 </head>
 
 <body>
-    <div id="map"></div>
+
+    <br>
+    <%- include('../partials/header.ejs') %>
+    <%- body %>
+    <br>
+    <!-- <div id="map"></div> -->
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
         crossorigin=""></script>
@@ -126,9 +132,11 @@
         var marker, circle, lat, long, accuracy;
 
         function getPosition(position) {
-            // console.log(position)
+            
             lat = position.coords.latitude
             long = position.coords.longitude
+            var coordinate=[lat,long]
+            console.log(coordinate)
             accuracy = position.coords.accuracy
 
             if (marker) {
