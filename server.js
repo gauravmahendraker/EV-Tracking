@@ -5,6 +5,8 @@
 const express= require('express')
 const app= express()
 const expressLayouts = require('express-ejs-layouts')
+// const bodyParser = require('body-parser')
+// var http = require('node:http');
 
 const indexRouter = require('./routes/index')
 const driverRouter = require('./routes/drivers')
@@ -14,8 +16,10 @@ app.set('views', __dirname + '/views')
 app.set('layout','layouts/layout')
 app.use(expressLayouts)
 app.use(express.static('public'))
+// app.use(bodyParser.urlencoded({limit:'10mb',extended: false}))
+// app.locals.http = http
 
-// const mongoose = require('mongoose')
+ const mongoose = require('mongoose')
 // mongoose.connect(process.env.DATABASE_URL,{ useNewUrlParser: true})
 
 // const db= mongoose.connection
@@ -24,12 +28,19 @@ app.use(express.static('public'))
 // db.once('open',()=>console.log('Connected to Datbase'))
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://mahendrakergaurav:gauravaryasonakshi@cluster0.cdycnzq.mongodb.net/?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  client.close();
+const uri = "mongodb+srv://mahendrakergaurav:gauravaryasonakshi@cluster0.cdycnzq.mongodb.net/test1?retryWrites=true&w=majority";
+// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+// client.connect(err => {
+//   const collection = client.db("test").collection("devices");
+//   // perform actions on the collection object
+//   client.close();
+// }).then(()=>console.log('connected to mongodb'))
+// .catch(e=>console.log(e));
+// mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true }).then(console.log("connected"))
+mongoose.connect(uri,{
+    useNewUrlParser: true,
+   
+    useUnifiedTopology: true
 });
 
 app.use('/', indexRouter)

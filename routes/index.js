@@ -1,11 +1,22 @@
 const express=  require('express')
 const router = express.Router()
-
-router.get('/',(req,res)=>{
-    // console.log(lat);
-    res.render('index')
+const Driver = require('../models/driver')
+// router.get('/',(req,res)=>{
+//     // console.log(lat);
+//     res.render('index')
     
-   // res.send("hello");
+//    // res.send("hello");
+// })
+router.get('/', async (req,res)=>{
+    try{
+        const drivers=await Driver.find({})
+        res.render('index',{drivers:drivers})
+        
+    }
+    catch{
+
+    }
+    
 })
 
 module.exports= router

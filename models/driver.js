@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const driverSchema = new mongoose.Schema({
     id:{
-        type: Number,
+        type: String,
         required: true
     },
     name:{
@@ -23,5 +23,7 @@ const driverSchema = new mongoose.Schema({
     }
 
 })
+ const Driver = new mongoose.model('Driver',driverSchema)
 
-module.exports = mongoose.model('Driver',driverSchema)
+//const Driver = mongoose.model('Driver',driverSchema)
+module.exports = Driver;
