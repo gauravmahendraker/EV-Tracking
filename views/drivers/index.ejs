@@ -1,6 +1,7 @@
 <h2>All drivers</h2>
-<% drivers.forEach(driver=>{ %>
+<% drivers.forEach((driver, idx)=>{ %>
     <div>
+        <p><%= idx+1 %></p>
         <p><%= driver.id %></p>
         <p><%= driver.name %></p>
         <p><%= driver.contact %></p>
