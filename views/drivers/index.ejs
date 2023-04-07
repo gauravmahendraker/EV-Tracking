@@ -1,13 +1,22 @@
 <h2>All drivers</h2>
-<% drivers.forEach((driver, idx)=>{ %>
-    <div>
-        <p><%= idx+1 %></p>
-        <p><%= driver.id %></p>
-        <p><%= driver.name %></p>
-        <p><%= driver.contact %></p>
-    </div>
-    
-     <br>
-    
-<% }) %>
+<table class="table">
+        <thead>
+          <tr>
+            <th scope="col">S.No.</th>
+            <th scope="col">id</th>
+            <th scope="col">name</th>
+            <th scope="col">contact</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% drivers.forEach((driver, idx)=>{ %>
+          <tr>
+            <th scope="row"><%= idx+1 %></th>
+            <td><%= driver.id %></td>
+            <td><%= driver.name %></td>
+            <td><%= driver.contact %></td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
 <!-- <p id="map"></p> -->
