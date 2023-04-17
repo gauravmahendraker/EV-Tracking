@@ -22,6 +22,8 @@
             navigator.geolocation.watchPosition(getPosition)
         };
         var marker, circle, lat, long, accuracy;
+        let marker_array = new Array();
+        let marker_arrayn = new Array();
 
         function getPosition(position) {
             
@@ -38,11 +40,13 @@
             if (circle) {
                 map_init.removeLayer(circle)
             }
+            
 
             marker = L.marker([lat, long])
             circle = L.circle([lat, long], { radius: accuracy })
 
             var featureGroup = L.featureGroup([marker, circle]).addTo(map_init)
+            
 
           //  map_init.fitBounds(featureGroup.getBounds())
           
@@ -89,6 +93,11 @@
 
     //    }
     </script>
+    <!-- for(i=0;i<marker_array.length;i++) {
+        map_init.removeLayer(marker[i]);
+    }  
+    
+    marker_array=[] -->
     <% drivers.forEach(driver=>{ %>
    
         <script>
@@ -97,6 +106,7 @@
             console.log(driver)
             var marker1,circle1
                     marker1 = L.marker([driver.latitude, driver.longitude])
+                    marker_arrayn.push(marker1);
                // circle1 = L.circle([lat, long], { radius: accuracy })
     
                 var featureGroup = L.featureGroup([marker1]).addTo(map_init)
