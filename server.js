@@ -7,9 +7,18 @@ const app= express()
 const expressLayouts = require('express-ejs-layouts')
 // const bodyParser = require('body-parser')
 // var http = require('node:http');
+var bodyParser = require('body-parser')
+
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
 
 const indexRouter = require('./routes/index')
 const driverRouter = require('./routes/drivers')
+const adminRouter = require('./routes/admin')
 
 app.set('view engine','ejs')
 app.set('views', __dirname + '/views')
@@ -45,9 +54,10 @@ mongoose.connect(uri,{
 
 app.use('/', indexRouter)
 app.use('/drivers',driverRouter)
+app.use('/admin',adminRouter)
 
 
-app.listen( process.env.PORT || 3000)
+app.listen( process.env.PORT || 3001)
 // app.listen(3000)
 
- console.log('Server running at http://localhost:3000');
+ console.log('Server running at http://localhost:3001');

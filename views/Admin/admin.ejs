@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: beige !important;">
+            <div class="container-fluid">
+              <a class="navbar-brand active" href="/admin_profile" style="padding-left:9vw !important; padding-right:9vw !important;">Profile</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+               aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span>More</span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a type="button" class="btn" href="/drivers">See Drivers</a>
+                  </li>
+                  <li class="nav-item">
+                    <button type="button" class="btn navbut" data-bs-toggle="modal" data-bs-target="#add_driver-modal">
+                        Add driver
+                    </button>
+                  </li>
+                  <li class="nav-item">
+                    <a type="button" class="btn" href="/">Logout</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+    </header>
+    <div class="modal fade" id="add_driver-modal" tabindex="-1" aria-labelledby="add_driver-modal" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Enter Details</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="return false;">
+                    <div class="mb-3">
+                      <label for="id" class="form-label">Vehicle No.</label>
+                      <input type="text" class="form-control" id="id" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="name" class="form-label">Name</label>
+                      <input type="text" class="form-control" id="name">
+                    </div>
+                    <div class="mb-3">
+                      <label for="contact" class="form-label">Contact</label>
+                      <input type="text" class="form-control" id="contact">
+                    </div>
+                    <div class="mb-3">
+                      <label for="timeslot" class="form-label">Time Slot</label>
+                      <input type="text" class="form-control" id="timeslot">
+                    </div>
+                    <button type="submit" onClick="sendpost1()" class="btn btn-primary">Submit</button>
+                  </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+</body>
+</html>

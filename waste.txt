@@ -1,0 +1,36 @@
+   from index
+    <!-- <% if(locals.drivers != null ) { %>
+        
+        <% drivers.forEach(driver=>{ %>
+       
+            <script>
+               
+                var driver= <%- JSON.stringify(driver) %>
+                console.log(driver)
+                var marker1,circle1
+                        marker1 = L.marker([driver.latitude, driver.longitude])
+                   // circle1 = L.circle([lat, long], { radius: accuracy })
+        
+                    var featureGroup = L.featureGroup([marker1]).addTo(map_init)
+            </script>
+            
+            
+        <% }) %>
+    <% } %> -->
+from layout
+
+    <% drivers.forEach(driver=>{ %>
+
+<script>
+   
+    var driver= <%- JSON.stringify(driver) %>
+    console.log(driver)
+    var marker1,circle1
+            marker1 = L.marker([driver.latitude, driver.longitude])
+       // circle1 = L.circle([lat, long], { radius: accuracy })
+
+        var featureGroup = L.featureGroup([marker1]).addTo(map_init)
+</script>
+
+
+<% }) %>

@@ -2,12 +2,15 @@ const express = require('express')
 const router = express.Router()
 const mongoose = require('mongoose')
 const Driver = require('../models/driver')
+const Driver_new = require('../models/driver_new')
 const multer = require('multer');
 const upload = multer();
+// create driver
+
 //  All Drivers Route
 router.get('/', async (req,res)=>{
     try{
-        const drivers=await Driver.find({})
+        const drivers=await Driver_new.find({})
         res.render('drivers/index',{drivers:drivers})
         
     }
@@ -17,13 +20,7 @@ router.get('/', async (req,res)=>{
     
 })
 
-//New Driver Route
-
-router.get('/new',(req,res)=>
-{
-    res.render('drivers/new',{driver: new Driver()})
-} )
-// create driver
+// login driver
 router.post('/',upload.none(),async(req,res)=>{
    
     const driver= {
@@ -47,8 +44,33 @@ router.post('/',upload.none(),async(req,res)=>{
         // })
           res.send('error creating driver')
     }
-
-        
+    
+} )
+// new driver
+router.post('/new',upload.none(),async(req,res)=>{
+   
+    const driver= {
+        driverId:req.body.driverId,
+        driverName:req.body.driverName,
+        phoneNo:req.body.phoneNo,
+        password:req.body.password,
+        timingSlot:req.body.timingSlot
+    }
+    console.log(driver);
+    try{
+        // const newDriver = await driver.save()
+        const newD= new Driver_new(driver);
+        await newD.save();
+        console.log('driver Created Successfully')
+    }catch
+    {
+        // res.render('drivers/new',{
+        //     driver: driver,
+        //     errorMessage: "Error Creating Driver"
+        // })
+          res.send('error creating driver')
+    }
+    res.redirect('/admin/track');
 } )
 
 module.exports = router
