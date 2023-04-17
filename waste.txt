@@ -34,3 +34,161 @@ from layout
 
 
 <% }) %>
+
+
+
+
+
+
+// if(process.env.NODE_ENV !== 'production'){
+//     require('dotenv').parse()
+// }
+
+const express= require('express')
+const app= express()
+const http = require('http');
+const server = http.createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(server);
+const expressLayouts = require('express-ejs-layouts')
+// const bodyParser = require('body-parser')
+// var http = require('node:http');
+var bodyParser = require('body-parser')
+
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
+
+const indexRouter = require('./routes/index')
+const driverRouter = require('./routes/drivers')
+const adminRouter = require('./routes/admin')
+
+app.set('view engine','ejs')
+app.set('views', __dirname + '/views')
+app.set('layout','layouts/layout')
+app.use(expressLayouts)
+app.use(express.static('public'))
+// app.use(bodyParser.urlencoded({limit:'10mb',extended: false}))
+// app.locals.http = http
+
+ const mongoose = require('mongoose')
+// mongoose.connect(process.env.DATABASE_URL,{ useNewUrlParser: true})
+
+// const db= mongoose.connection
+
+// db.on('error', error=>console.log(error))
+// db.once('open',()=>console.log('Connected to Datbase'))
+
+io.on('connection', (socket) => {
+    console.log('a user connected');
+  });
+io.on('sendLocation',location=>{
+    console.log(location)
+})
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = "mongodb+srv://mahendrakergaurav:gauravaryasonakshi@cluster0.cdycnzq.mongodb.net/test1?retryWrites=true&w=majority";
+// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+// client.connect(err => {
+//   const collection = client.db("test").collection("devices");
+//   // perform actions on the collection object
+//   client.close();
+// }).then(()=>console.log('connected to mongodb'))
+// .catch(e=>console.log(e));
+// mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true }).then(console.log("connected"))
+mongoose.connect(uri,{
+    useNewUrlParser: true,
+   
+    useUnifiedTopology: true
+});
+
+app.use('/', indexRouter)
+app.use('/drivers',driverRouter)
+app.use('/admin',adminRouter)
+
+
+server.listen( process.env.PORT || 3001)
+// app.listen(3000)
+
+ console.log('Server running at http://localhost:3001');
+
+
+
+
+
+
+
+
+
+ 
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <script>
+        var map_init = L.map('map', {
+            center: [22.525, 75.925],
+            zoom: 15.4
+        });
+        var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map_init);
+        L.Control.geocoder().addTo(map_init);
+        if (!navigator.geolocation) {
+            console.log("Your browser doesn't support geolocation feature!")
+        } else {
+            // setInterval(() => {
+            //     navigator.geolocation.getCurrentPosition(getPosition)
+            // }, 5000);
+            navigator.geolocation.watchPosition(getPosition)
+        };
+        var marker, circle, lat, long, accuracy;
+        let marker_array = new Array();
+        let marker_arrayn = new Array();
+
+        function getPosition(position) {
+            
+            lat = position.coords.latitude
+            long = position.coords.longitude
+            var coordinate=[lat,long]
+            console.log(coordinate)
+            accuracy = position.coords.accuracy
+
+            if (marker) {
+                map_init.removeLayer(marker)
+            }
+
+            if (circle) {
+                map_init.removeLayer(circle)
+            }
+            
+
+            marker = L.marker([lat, long])
+            circle = L.circle([lat, long], { radius: accuracy })
+
+            var featureGroup = L.featureGroup([marker, circle]).addTo(map_init)
+            
+
+          //  map_init.fitBounds(featureGroup.getBounds())
+          
+
+            console.log("Your coordinate is: Lat: " + lat + " Long: " + long + " Accuracy: " + accuracy)
+        }
+   
+   
+    //    function add ()
+    //    {
+        
+    //         console.log("driver location added")
+    //          drivers.forEach(driver=>{ 
+    //             var marker1,circle1
+    //             marker1 = L.marker([driver.latitude, driver.longitude])
+    //         circle1 = L.circle([lat, long], { radius: accuracy })
+
+    //         var featureGroup = L.featureGroup([marker1]).addTo(map_init)
+    //     }) 
+
+    //    }
+   

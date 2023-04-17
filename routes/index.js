@@ -25,11 +25,11 @@ router.post('/', async (req, res)=>{
         if(req.body.driverId != null && req.body.password != null){
             sop.driverId = req.body.driverId
             sop.password = req.body.password
-            console.log(sop)
+           // console.log(sop)
             try{
                 const users = await Driver.find(sop);
                 if(users != null){
-                    console.log(users)
+                   // console.log(users[0].driverId)
                     res.render('index', {driverId:users[0].driverId})
                 } else {
                     res.render('index', {driverId : null})
@@ -39,7 +39,7 @@ router.post('/', async (req, res)=>{
                 res.send('error')
             }
         } else {
-            res.render('index', {driverId: null})
+            res.render('index')
         }
 
 })

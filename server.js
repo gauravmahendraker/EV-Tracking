@@ -1,9 +1,15 @@
+
+
 // if(process.env.NODE_ENV !== 'production'){
 //     require('dotenv').parse()
 // }
 
 const express= require('express')
 const app= express()
+const http = require('http');
+const server = http.createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(server);
 const expressLayouts = require('express-ejs-layouts')
 // const bodyParser = require('body-parser')
 // var http = require('node:http');
@@ -36,6 +42,15 @@ app.use(express.static('public'))
 // db.on('error', error=>console.log(error))
 // db.once('open',()=>console.log('Connected to Datbase'))
 
+io.on('connection', (socket) => {
+    console.log('a user connected');
+    socket.on('sendLocation',(location)=>{
+        console.log(location)
+        var loc = location
+        socket.broadcast.emit("driverLocation",loc)
+    })
+  });
+
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = "mongodb+srv://mahendrakergaurav:gauravaryasonakshi@cluster0.cdycnzq.mongodb.net/test1?retryWrites=true&w=majority";
 // const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
@@ -57,7 +72,7 @@ app.use('/drivers',driverRouter)
 app.use('/admin',adminRouter)
 
 
-app.listen( process.env.PORT || 3001)
+server.listen( process.env.PORT || 3001)
 // app.listen(3000)
 
  console.log('Server running at http://localhost:3001');
