@@ -10,8 +10,8 @@ const upload = multer();
 // middleware
 router.get('/drivers', async (req,res)=>{
     try{
-        const drivers=await Driver.find({})
-        res.render('drivers/index',{drivers:drivers,response:true})
+        const drivers=await Driver_new.find({})
+        res.render('drivers/index',{drivers:drivers})
         
     }
     catch{
