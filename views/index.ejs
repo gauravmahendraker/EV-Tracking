@@ -42,8 +42,9 @@ function getPosition(position) {
         //  console.log(driver)
         //  console.log(lat)
         // console.log('hello atish')
+         setInterval(()=>{socket.emit("sendLocation",{driverId:driver,latitude:lat,longitude:long});},5000)
+       // socket.emit("sendLocation",{driverId:driver,latitude:lat,longitude:long});
         
-        socket.emit("sendLocation",{driverId:driver,latitude:lat,longitude:long});
   
 
     console.log("Your coordinate is: Lat: " + lat + " Long: " + long + " Accuracy: " + accuracy)
@@ -53,6 +54,7 @@ function getPosition(position) {
 <% } %> 
 
 <script>
+    var markers_array=[];
 socket.on("driverLocation", location =>{
     var lat1,long1,marker1;
     lat1=location.latitude;
@@ -60,6 +62,12 @@ socket.on("driverLocation", location =>{
     console.log(lat1,long1,"location recieved")
     marker1=L.marker([lat1, long1])
     var featureGroup = L.featureGroup([marker1]).addTo(map_init)
+    
+    if (!markers_array[location.driverId] ) {
+            markers[location.driverId] = L.marker([lat1, long1]).bindPopup(location.driverId).addTo(map_init);
+            } else {
+            markers[location.driverId].setLatLng(lat1, long1).setPopupContent(location.driverId).update();
+            }
 
 
 })
