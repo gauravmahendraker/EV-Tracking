@@ -60,13 +60,16 @@ socket.on("driverLocation", location =>{
     long1=location.longitude;
     console.log(lat1,long1,"location recieved")
     // marker1=L.marker([lat1, long1])
-    // var featureGroup = L.featureGroup([marker1]).addTo(map_init)
+     var featureGroup 
     
     if (!markers_array[location.driverId] ) {
-            markers_array[location.driverId] = L.marker([lat1, long1]).bindPopup(location.driverId).addTo(map_init);
+            markers_array[location.driverId] = L.marker([lat1, long1]);
+            L.featureGroup([markers_array[location.driverId]]).addTo(map_init)
             } else {
-                markers[location.driverId]
-            markers_array[location.driverId].setLatLng(lat1, long1).setPopupContent(location.driverId).update();
+                map_init.removeLayer(markers_array[location.driverId])
+                
+                markers_array[location.driverId] = L.marker([lat1, long1]);
+                L.featureGroup([markers_array[location.driverId]]).addTo(map_init)
             }
 
 
