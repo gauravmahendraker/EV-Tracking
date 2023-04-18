@@ -1,5 +1,5 @@
 
-<div id="map" style="margin-left:10px;width:98vw;"></div>
+<div id="map" style="margin-right:10vw; width:98vw;"></div>
 
 <% if(locals.driverId != null ) { %>
     <script>
@@ -60,13 +60,14 @@ socket.on("driverLocation", location =>{
     lat1=location.latitude;
     long1=location.longitude;
     console.log(lat1,long1,"location recieved")
-    marker1=L.marker([lat1, long1])
-    var featureGroup = L.featureGroup([marker1]).addTo(map_init)
+    // marker1=L.marker([lat1, long1])
+    // var featureGroup = L.featureGroup([marker1]).addTo(map_init)
     
     if (!markers_array[location.driverId] ) {
-            markers[location.driverId] = L.marker([lat1, long1]).bindPopup(location.driverId).addTo(map_init);
+            markers_array[location.driverId] = L.marker([lat1, long1]).bindPopup(location.driverId).addTo(map_init);
             } else {
-            markers[location.driverId].setLatLng(lat1, long1).setPopupContent(location.driverId).update();
+                markers[location.driverId]
+            markers_array[location.driverId].setLatLng(lat1, long1).setPopupContent(location.driverId).update();
             }
 
 
