@@ -47,12 +47,19 @@ function getPosition(position) {
 
   //  map_init.fitBounds(featureGroup.getBounds())
   var driver= <%- JSON.stringify(driverId) %>
+<<<<<<< HEAD
   var contact= <%- JSON.stringify(contact) %>
   var name= <%- JSON.stringify(name) %>
         //  console.log(driver)
         //  console.log(lat)
         // console.log('hello atish')
          setInterval(()=>{socket.emit("sendLocation",{driverId:driver,latitude:lat,longitude:long,contact:contact,name:name});},1000)
+=======
+        //  console.log(driver)
+        //  console.log(lat)
+        // console.log('hello atish')
+         setInterval(()=>{socket.emit("sendLocation",{driverId:driver,latitude:lat,longitude:long});},1000)
+>>>>>>> main
        // socket.emit("sendLocation",{driverId:driver,latitude:lat,longitude:long});
         
   
@@ -81,13 +88,17 @@ socket.on("driverLocation", location =>{
     var lat1,long1,marker1;
     lat1=location.latitude;
     long1=location.longitude;
+<<<<<<< HEAD
     var name=location.name;
     var contact=location.contact;
+=======
+>>>>>>> main
     console.log(lat1,long1,"location recieved")
     // marker1=L.marker([lat1, long1])
      var featureGroup 
     
     if (!markers_array[location.driverId] ) {
+<<<<<<< HEAD
         markers_array[location.driverId] = L.marker([lat1, long1])
         L.featureGroup([markers_array[location.driverId]]).addTo(map_init).on('click', ()=>{
             alert("Drivers Name: "+name+"\nContact No.: "+contact);
@@ -99,6 +110,17 @@ socket.on("driverLocation", location =>{
             alert("Drivers Name: "+name+"\nContact No.: "+contact);
         })
     }
+=======
+            markers_array[location.driverId] = L.marker([lat1, long1]);
+            L.featureGroup([markers_array[location.driverId]]).addTo(map_init)
+            } else {
+                map_init.removeLayer(markers_array[location.driverId])
+                
+                markers_array[location.driverId] = L.marker([lat1, long1]);
+                L.featureGroup([markers_array[location.driverId]]).addTo(map_init)
+            }
+
+>>>>>>> main
 
 })
 </script>
