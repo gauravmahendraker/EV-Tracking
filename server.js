@@ -15,7 +15,7 @@ const expressLayouts = require('express-ejs-layouts')
 // var http = require('node:http');
 var bodyParser = require('body-parser')
 
-
+app.use(express.static(__dirname + '/assets'));
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 

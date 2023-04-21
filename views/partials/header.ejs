@@ -19,13 +19,13 @@
     }
 </style>
 <header class="fixed-nav">
-    <nav class="navbar navbar-expand-lg bg-body-tertiary " style="background-color: beige !important;">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary " style="background-color: rgb(22, 200, 165) !important;">
         <div class="container-fluid">
-          <% if(locals.response != null ) { %>
+          <% if(locals.response != null && locals.driverId == null ) { %>
             <% if(response == true) { %>
               <a class="navbar-brand active" href="/admin/track" style="padding-left:9vw !important; padding-right:9vw !important;">Track</a>
             <% } %>
-        <% } else { %>
+        <% } else if(locals.driverId == null) { %>
           <a class="navbar-brand active" href="/" style="padding-left:9vw !important; padding-right:9vw !important;">Track</a>
         <% } %>
          
@@ -36,16 +36,16 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <% if(locals.response != null ) { %>
+                <% if(locals.response != null && locals.driverId ==null ) { %>
                   <% if(response == true) { %>
                     <a type="button" class="btn" href="/admin/drivers">Drivers</a>
                   <% } %>
-              <% } else { %>
+              <% } else if(locals.driverId ==null) { %>
                 <a type="button" class="btn" href="/drivers">Drivers</a>
               <% } %>
                 
               </li>
-              <% if( locals.response != null ) { %>
+              <% if( locals.response != null && locals.driverId ==null ) { %>
                 <% if(response == true) { %>
                   <li class="nav-item">
                     <a type="button" class="btn" href="/">Logout</a>
@@ -56,11 +56,22 @@
                       <button type="button" class="btn navbut" data-bs-toggle="modal" data-bs-target="#user-modal">Login as Driver</button>
                     </li>
                   <% } %>
-              <% } else { %>
-                <li class="nav-item">
-                  <button type="button" class="btn navbut" data-bs-toggle="modal" data-bs-target="#user-modal">Login as Driver</button>
-                </li>
-                <% } %>
+              <% } else if(locals.driverId !=null) { %>
+                <% if(driverId != null) { %>
+                  <li class="nav-item">
+                    <a type="button" class="btn" href="/">Logout as Driver</a>
+    
+                  </li>
+                  <% } else { %>
+                    <li class="nav-item">
+                      <button type="button" class="btn navbut" data-bs-toggle="modal" data-bs-target="#user-modal">Login as Driver</button>
+                    </li>
+                  <% } %>
+                <% } else { %>
+                  <li class="nav-item">
+                    <button type="button" class="btn navbut" data-bs-toggle="modal" data-bs-target="#user-modal">Login as Driver</button>
+                  </li>
+                  <% }  %>
 
               <li class="nav-item">
                     <% if(locals.response != null ) { %>
@@ -69,7 +80,7 @@
                             Add driver
                           </button>
                         <% } %>
-                    <% } else { %>
+                    <% } else if(locals.driverId == null) { %>
                     <button type="button" class="btn navbut" data-bs-toggle="modal" data-bs-target="#admin-modal">
                       Login as Admin
                     </button>

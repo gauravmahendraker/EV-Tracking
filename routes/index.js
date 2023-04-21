@@ -19,6 +19,18 @@ router.get('/', async (req,res)=>{
     // }
     
 })
+router.get('/home', async (req,res)=>{
+    // try{
+        // const drivers=await Driver.find({})
+        // res.render('index',{drivers:drivers})
+        
+        res.render('index2',{nonav:true});
+    // }
+    // catch{
+    //     res.send('error');
+    // }
+    
+})
 router.post('/', async (req, res)=>{
     
     let sop={}
@@ -32,11 +44,11 @@ router.post('/', async (req, res)=>{
                    // console.log(users[0].driverId)
                     res.render('index', {driverId:users[0].driverId})
                 } else {
-                    res.render('index', {driverId : null})
+                    res.render('index')
                 }
             }
             catch{
-                res.send('error')
+                res.render('index',{error:true})
             }
         } else {
             res.render('index')
