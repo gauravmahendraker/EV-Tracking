@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/png">
+
+    <!--====== Bootstrap css ======-->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!--====== Line Icons css ======-->
+    <link rel="stylesheet" href="/css/LineIcons.css">
+
+    <!--====== Magnific Popup css ======-->
+    <link rel="stylesheet" href="/css/magnific-popup.css">
+
+    <!--====== Slick css ======-->
+    <link rel="stylesheet" href="/css/slick.css">
+
+    <!--====== Animate css ======-->
+    <link rel="stylesheet" href="/css/animate.css">
+
+    <!--====== Default css ======-->
+    <link rel="stylesheet" href="/css/default.css">
+
+    <!--====== Style css ======-->
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            z-index: -1;
+        }
+
+        #map {
+            width: 99%;
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body style="margin-top:0px;">
+    <script src = "/socket.io/socket.io.js"></script>
+    <script>var socket = io();</script>
+    <% if( locals.nonav == null  ) { %>
+    <%- include('../partials/header.ejs') %>
+    <% } %>
+    <%- body %>
+    <br>
+    
+
+
+   
+    
+    
+    
+</body>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+crossorigin=""></script>
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+<script>
+    (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
+      key: "YOUR_API_KEY_HERE",
+      // Add other bootstrap parameters as needed, using camel case.
+      // Use the 'v' parameter to indicate the version to load (alpha, beta, weekly, etc.)
+    });
+  </script>
+
+<script>
+
+var map_init = L.map('map', {
+    center: [22.525, 75.925],
+    zoom: 15.4
+});
+var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map_init);
+L.Control.geocoder().addTo(map_init);
+
+
+
+
+
+// if (!navigator.geolocation) {
+//     console.log("Your browser doesn't support geolocation feature!")
+// } else {
+//     // setInterval(() => {
+//     //     navigator.geolocation.getCurrentPosition(getPosition)
+//     // }, 5000);
+//     navigator.geolocation.watchPosition(getPosition)
+// };
+// var marker, circle, lat, long, accuracy;
+
+// function getPosition(position) {
+    
+//     lat = position.coords.latitude
+//     long = position.coords.longitude
+//     var coordinate=[lat,long]
+//     console.log(coordinate)
+//     accuracy = position.coords.accuracy
+
+//     if (marker) {
+//         map_init.removeLayer(marker)
+//     }
+
+//     if (circle) {
+//         map_init.removeLayer(circle)
+//     }
+
+//     marker = L.marker([lat, long])
+//     circle = L.circle([lat, long], { radius: accuracy })
+
+//     var featureGroup = L.featureGroup([marker, circle]).addTo(map_init)
+
+//   //  map_init.fitBounds(featureGroup.getBounds())
+  
+
+//     console.log("Your coordinate is: Lat: " + lat + " Long: " + long + " Accuracy: " + accuracy)
+// }
+
+//    function add ()
+//    {
+
+//         console.log("driver location added")
+//          drivers.forEach(driver=>{ 
+//             var marker1,circle1
+//             marker1 = L.marker([driver.latitude, driver.longitude])
+//         circle1 = L.circle([lat, long], { radius: accuracy })
+
+//         var featureGroup = L.featureGroup([marker1]).addTo(map_init)
+//     }) 
+
+//    }
+function sendpost(){
+    // navigator.geolocation.watchPosition(getPosition)
+     var name = document.getElementById("name").value
+     var id = document.getElementById("id").value
+     var contact = document.getElementById("contact").value
+     var data = new FormData();
+     data.append("id", id);
+     data.append("name", name);
+     data.append("contact", contact);
+     data.append("longitude", long);
+     data.append("latitude", lat);
+
+     console.log("datareceived");
+// (A2) AJAX
+     var xhr = new XMLHttpRequest();
+     xhr.open("POST", "/drivers");
+     xhr.onload = function () {
+         console.log(this.response);
+         return this.response
+     };
+     xhr.send(data);
+ 
+ }
+ 
+</script>
+
+</html>
+

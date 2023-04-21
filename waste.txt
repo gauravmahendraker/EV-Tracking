@@ -1,0 +1,459 @@
+   from index
+    <!-- <% if(locals.drivers != null ) { %>
+        
+        <% drivers.forEach(driver=>{ %>
+       
+            <script>
+               
+                var driver= <%- JSON.stringify(driver) %>
+                console.log(driver)
+                var marker1,circle1
+                        marker1 = L.marker([driver.latitude, driver.longitude])
+                   // circle1 = L.circle([lat, long], { radius: accuracy })
+        
+                    var featureGroup = L.featureGroup([marker1]).addTo(map_init)
+            </script>
+            
+            
+        <% }) %>
+    <% } %> -->
+from layout
+
+    <% drivers.forEach(driver=>{ %>
+
+<script>
+   
+    var driver= <%- JSON.stringify(driver) %>
+    console.log(driver)
+    var marker1,circle1
+            marker1 = L.marker([driver.latitude, driver.longitude])
+       // circle1 = L.circle([lat, long], { radius: accuracy })
+
+        var featureGroup = L.featureGroup([marker1]).addTo(map_init)
+</script>
+
+
+<% }) %>
+
+
+
+
+
+
+// if(process.env.NODE_ENV !== 'production'){
+//     require('dotenv').parse()
+// }
+
+const express= require('express')
+const app= express()
+const http = require('http');
+const server = http.createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(server);
+const expressLayouts = require('express-ejs-layouts')
+// const bodyParser = require('body-parser')
+// var http = require('node:http');
+var bodyParser = require('body-parser')
+
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
+
+const indexRouter = require('./routes/index')
+const driverRouter = require('./routes/drivers')
+const adminRouter = require('./routes/admin')
+
+app.set('view engine','ejs')
+app.set('views', __dirname + '/views')
+app.set('layout','layouts/layout')
+app.use(expressLayouts)
+app.use(express.static('public'))
+// app.use(bodyParser.urlencoded({limit:'10mb',extended: false}))
+// app.locals.http = http
+
+ const mongoose = require('mongoose')
+// mongoose.connect(process.env.DATABASE_URL,{ useNewUrlParser: true})
+
+// const db= mongoose.connection
+
+// db.on('error', error=>console.log(error))
+// db.once('open',()=>console.log('Connected to Datbase'))
+
+io.on('connection', (socket) => {
+    console.log('a user connected');
+  });
+io.on('sendLocation',location=>{
+    console.log(location)
+})
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = "mongodb+srv://mahendrakergaurav:gauravaryasonakshi@cluster0.cdycnzq.mongodb.net/test1?retryWrites=true&w=majority";
+// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+// client.connect(err => {
+//   const collection = client.db("test").collection("devices");
+//   // perform actions on the collection object
+//   client.close();
+// }).then(()=>console.log('connected to mongodb'))
+// .catch(e=>console.log(e));
+// mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true }).then(console.log("connected"))
+mongoose.connect(uri,{
+    useNewUrlParser: true,
+   
+    useUnifiedTopology: true
+});
+
+app.use('/', indexRouter)
+app.use('/drivers',driverRouter)
+app.use('/admin',adminRouter)
+
+
+server.listen( process.env.PORT || 3001)
+// app.listen(3000)
+
+ console.log('Server running at http://localhost:3001');
+
+
+
+
+
+
+
+
+
+ 
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <script>
+        var map_init = L.map('map', {
+            center: [22.525, 75.925],
+            zoom: 15.4
+        });
+        var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map_init);
+        L.Control.geocoder().addTo(map_init);
+        if (!navigator.geolocation) {
+            console.log("Your browser doesn't support geolocation feature!")
+        } else {
+            // setInterval(() => {
+            //     navigator.geolocation.getCurrentPosition(getPosition)
+            // }, 5000);
+            navigator.geolocation.watchPosition(getPosition)
+        };
+        var marker, circle, lat, long, accuracy;
+        let marker_array = new Array();
+        let marker_arrayn = new Array();
+
+        function getPosition(position) {
+            
+            lat = position.coords.latitude
+            long = position.coords.longitude
+            var coordinate=[lat,long]
+            console.log(coordinate)
+            accuracy = position.coords.accuracy
+
+            if (marker) {
+                map_init.removeLayer(marker)
+            }
+
+            if (circle) {
+                map_init.removeLayer(circle)
+            }
+            
+
+            marker = L.marker([lat, long])
+            circle = L.circle([lat, long], { radius: accuracy })
+
+            var featureGroup = L.featureGroup([marker, circle]).addTo(map_init)
+            
+
+          //  map_init.fitBounds(featureGroup.getBounds())
+          
+
+            console.log("Your coordinate is: Lat: " + lat + " Long: " + long + " Accuracy: " + accuracy)
+        }
+   
+   
+    //    function add ()
+    //    {
+        
+    //         console.log("driver location added")
+    //          drivers.forEach(driver=>{ 
+    //             var marker1,circle1
+    //             marker1 = L.marker([driver.latitude, driver.longitude])
+    //         circle1 = L.circle([lat, long], { radius: accuracy })
+
+    //         var featureGroup = L.featureGroup([marker1]).addTo(map_init)
+    //     }) 
+
+    //    }
+   
+
+     
+    <!--====== TESTIMONIAL THREE PART START ======-->
+
+    <section id="testimonial" class="testimonial-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="section-title text-center pb-20">
+                        <h3 class="title">Testimonial</h3>
+                        <p class="text">Stop wasting time and money designing and managing a website that doesn’t get results. Happiness guaranteed!</p>
+                    </div> <!-- section title -->
+                </div>
+            </div> <!-- row -->
+            
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row testimonial-active">
+                        <div class="col-lg-4">
+                            <div class="single-testimonial mt-30 mb-30 text-center">
+                                <div class="testimonial-image">
+                                    <img src="/images/author-3.jpg" alt="Author">
+                                </div>
+                                <div class="testimonial-content">
+                                    <p class="text">Stop wasting time and money designing and managing a website that doesn’t get results. Happiness guaranteed! Stop wasting time and money designing and managing a website that doesn’t get results. Happiness guaranteed!</p>
+                                    <h6 class="author-name">Isabela Moreira</h6>
+                                    <span class="sub-title">CEO, GrayGrids</span>
+                                </div>
+                            </div> <!-- single testimonial -->
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="single-testimonial mt-30 mb-30 text-center">
+                                <div class="testimonial-image">
+                                    <img src="/images/author-1.jpg" alt="Author">
+                                </div>
+                                <div class="testimonial-content">
+                                    <p class="text">Stop wasting time and money designing and managing a website that doesn’t get results. Happiness guaranteed! Stop wasting time and money designing and managing a website that doesn’t get results. Happiness guaranteed!</p>
+                                    <h6 class="author-name">Fiona</h6>
+                                    <span class="sub-title">Lead Designer, UIdeck</span>
+                                </div>
+                            </div> <!-- single testimonial -->
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="single-testimonial mt-30 mb-30 text-center">
+                                <div class="testimonial-image">
+                                    <img src="/images/author-2.jpg" alt="Author">
+                                </div>
+                                <div class="testimonial-content">
+                                    <p class="text">Stop wasting time and money designing and managing a website that doesn’t get results. Happiness guaranteed! Stop wasting time and money designing and managing a website that doesn’t get results. Happiness guaranteed!</p>
+                                    <h6 class="author-name">Elon Musk</h6>
+                                    <span class="sub-title">CEO, SpaceX</span>
+                                </div>
+                            </div> <!-- single testimonial -->
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="single-testimonial mt-30 mb-30 text-center">
+                                <div class="testimonial-image">
+                                    <img src="/images/author-4.jpg" alt="Author">
+                                </div>
+                                <div class="testimonial-content">
+                                    <p class="text">Stop wasting time and money designing and managing a website that doesn’t get results. Happiness guaranteed! Stop wasting time and money designing and managing a website that doesn’t get results. Happiness guaranteed!</p>
+                                    <h6 class="author-name">Fajar Siddiq</h6>
+                                    <span class="sub-title">CEO, MakerFlix</span>
+                                </div>
+                            </div> <!-- single testimonial -->
+                        </div>
+                    </div> <!-- row -->
+                </div>
+            </div> <!-- row -->
+        </div> <!-- container -->
+    </section>
+
+    <!--====== TESTIMONIAL THREE PART ENDS ======-->
+    
+    
+    <!--====== CLIENT LOGO PART START ======-->
+
+    <section id="client" class="client-logo-area">
+        <div class="container">
+            <div class="row client-active">
+                <div class="col-lg-3">
+                    <div class="single-client text-center">
+                        <img src="/images/client_logo_01.png" alt="Logo">
+                    </div> <!-- single client -->
+                </div>
+                <div class="col-lg-3">
+                    <div class="single-client text-center">
+                        <img src="/images/client_logo_02.png" alt="Logo">
+                    </div> <!-- single client -->
+                </div>
+                <div class="col-lg-3">
+                    <div class="single-client text-center">
+                        <img src="/images/client_logo_03.png" alt="Logo">
+                    </div> <!-- single client -->
+                </div>
+                <div class="col-lg-3">
+                    <div class="single-client text-center">
+                        <img src="/images/client_logo_04.png" alt="Logo">
+                    </div> <!-- single client -->
+                </div>
+                <div class="col-lg-3">
+                    <div class="single-client text-center">
+                        <img src="/images/client_logo_05.png" alt="Logo">
+                    </div> <!-- single client -->
+                </div>
+                <div class="col-lg-3">
+                    <div class="single-client text-center">
+                        <img src="/images/client_logo_06.png" alt="Logo">
+                    </div> <!-- single client -->
+                </div>
+                <div class="col-lg-3">
+                    <div class="single-client text-center">
+                        <img src="/images/client_logo_07.png" alt="Logo">
+                    </div> <!-- single client -->
+                </div>
+                <div class="col-lg-3">
+                    <div class="single-client text-center">
+                        <img src="/images/client_logo_08.png" alt="Logo">
+                    </div> <!-- single client -->
+                </div>
+            </div> <!-- row -->
+        </div> <!-- container -->
+    </section>
+
+    <!--====== CLIENT LOGO PART ENDS ======-->
+    
+    <!--====== CONTACT TWO PART START ======-->
+
+    <section id="contact" class="contact-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="section-title text-center pb-20">
+                        <h3 class="title">Get in touch</h3>
+                        <p class="text">Stop wasting time and money designing and managing a website that doesn’t get results. Happiness guaranteed!</p>
+                    </div> <!-- section title -->
+                </div>
+            </div> <!-- row -->
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="contact-two mt-50 wow fadeIn" data-wow-duration="1.5s" data-wow-delay="0.2s">
+                        <h4 class="contact-title">Lets talk about the project</h4>
+                        <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam unde repellendus delectus facilis quia consequatur maxime perferendis! Sequi, modi consequatur.</p>
+                        <ul class="contact-info">
+                            <li><i class="lni-money-location"></i> Elizabeth St, Melbourne, Australia</li>
+                            <li><i class="lni-phone-handset"></i> +333 789-321-654</li>
+                            <li><i class="lni-envelope"></i> hello@ayroui.com</li>
+                        </ul>
+                    </div> <!-- contact two -->
+                </div>
+                <div class="col-lg-6">
+                    <div class="contact-form form-style-one mt-35 wow fadeIn" data-wow-duration="1.5s" data-wow-delay="0.5s">
+                        <form  id="contact-form" action="/contact.php" method="post">
+                            <div class="form-input mt-15">
+                                <label>Name</label>
+                                <div class="input-items default">
+                                    <input type="text" placeholder="Name" name="name">
+                                    <i class="lni-user"></i>
+                                </div>
+                            </div> <!-- form input -->
+                            <div class="form-input mt-15">
+                                <label>Email</label>
+                                <div class="input-items default">
+                                    <input type="email" placeholder="Email" name="email">
+                                    <i class="lni-envelope"></i>
+                                </div>
+                            </div> <!-- form input -->
+                            <div class="form-input mt-15">
+                                <label>Massage</label>
+                                <div class="input-items default">
+                                    <textarea placeholder="Massage" name="massage"></textarea>
+                                    <i class="lni-pencil-alt"></i>
+                                </div>
+                            </div> <!-- form input -->
+                            <p class="form-message"></p>
+                            <div class="form-input rounded-buttons mt-20">
+                                <button type="submit" class="main-btn rounded-three">Submit</button>
+                            </div> <!-- form input -->
+                        </form>
+                    </div> <!-- contact form -->
+                </div>
+            </div> <!-- row -->
+        </div> <!-- container -->
+    </section>
+
+    <!--====== CONTACT TWO PART ENDS ======-->
+    
+    <!--====== FOOTER FOUR PART START ======-->
+
+    <footer id="footer" class="footer-area">
+        <div class="footer-widget">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="footer-link">
+                            <h6 class="footer-title">Company</h6>
+                            <ul>
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">Contact</a></li>
+                                <li><a href="#">Profile</a></li>
+                            </ul>
+                        </div> <!-- footer link -->
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="footer-link">
+                            <h6 class="footer-title">Solutions</h6>
+                            <ul>
+                                <li><a href="#">Facilities Services</a></li>
+                                <li><a href="#">Workplace Staffing</a></li>
+                                <li><a href="#">Project Management</a></li>
+                            </ul>
+                        </div> <!-- footer link -->
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="footer-link">
+                            <h6 class="footer-title">Product & Services</h6>
+                            <ul>
+                                <li><a href="#">Products</a></li>
+                                <li><a href="#">Business</a></li>
+                                <li><a href="#">Developer</a></li>
+                            </ul>
+                        </div> <!-- footer link -->
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="footer-link">
+                            <h6 class="footer-title">Help & Suuport</h6>
+                            <ul>
+                                <li><a href="#">Support Center</a></li>
+                                <li><a href="#">FAQ</a></li>
+                                <li><a href="#">Terms & Conditions</a></li>
+                            </ul>
+                        </div> <!-- footer link -->
+                    </div>
+                </div> <!-- row -->
+            </div> <!-- container -->
+        </div> <!-- footer widget -->
+        
+        <div class="footer-copyright">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-5">
+                        <div class="copyright text-center text-lg-left mt-10">
+                            <p class="text">Crafted by <a style="color: #38f9d7" rel="nofollow" href="https://uideck.con">UIdeck</a> and UI Elements from <a style="color: #38f9d7" rel="nofollow" href="https://ayroui.com">Ayro UI</a></p>
+                        </div> <!--  copyright -->
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="footer-logo text-center mt-10">
+                            <a href="index.html"><img src="/images/logo-2.svg" alt="Logo"></a>
+                        </div> <!-- footer logo -->
+                    </div>
+                    <div class="col-lg-5">
+                        <ul class="social text-center text-lg-right mt-10">
+                            <li><a href="https://facebook.com/uideckHQ"><i class="lni-facebook-filled"></i></a></li>
+                            <li><a href="https://twitter.com/uideckHQ"><i class="lni-twitter-original"></i></a></li>
+                            <li><a href="https://instagram.com/uideckHQ"><i class="lni-instagram-original"></i></a></li>
+                            <li><a href="#"><i class="lni-linkedin-original"></i></a></li>
+                        </ul> <!-- social -->
+                    </div>
+                </div> <!-- row -->
+            </div> <!-- container -->
+        </div> <!-- footer copyright -->
+    </footer>
+
+    <!--====== FOOTER FOUR PART ENDS ======-->
+    

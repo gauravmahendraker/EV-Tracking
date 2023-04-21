@@ -1,0 +1,48 @@
+<style>
+    table, th, td {
+        border: 1px solid rgb(184, 162, 162);
+        border-collapse: collapse;
+      }
+     tbody tr:hover{
+        background-color: rgb(219, 219, 206);
+     }
+    td{
+        padding: 0.5rem;
+    }
+    table{
+      width:88vw !important;
+      position: relative;
+      left:3vw !important;
+      right:5vw !important;
+      margin-top:1rem;
+  }
+  .contents{
+    position:relative;
+    top:20vh;
+  }
+</style>
+<div class="contents">
+<h2 style="display:inline; position:relative; left:3vw;">All drivers</h2>
+<table class="table" style="border:2px solid rgb(108, 98, 98);">
+        <thead>
+          <tr>
+            <th scope="col">S.No.</th>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Contact</th>
+            <th scope="col">Timing Slots</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% drivers.forEach((driver, idx)=>{ %>
+          <tr>
+            <th scope="row"><%= idx+1 %></th>
+            <td><%= driver.driverId %></td>
+            <td><%= driver.driverName %></td>
+            <td><%= driver.phoneNo %></td>
+            <td><%= driver.timingSlot %></td>
+          </tr>
+          <% }) %>
+        </tbody>
+</table>
+</div>

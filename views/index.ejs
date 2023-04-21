@@ -1,0 +1,108 @@
+<% if(locals.error != null) { %>
+    <% if(error == true) { %>
+        <div class="alert alert-danger" role="alert">
+            Error while logging in as driver
+            Possibly wrong Driver Id or Password
+          </div>
+        <% } %>
+<% } %>
+<div id="map"  style="margin-right:10vw; width:98.5vw;"></div>
+
+<% if(locals.driverId != null 
+) { %>
+    <script>
+        
+// 
+if (!navigator.geolocation) {
+    console.log("Your browser doesn't support geolocation feature!")
+} else {
+    // setInterval(() => {
+    //     navigator.geolocation.getCurrentPosition(getPosition)
+    // }, 5000);
+    navigator.geolocation.watchPosition(getPosition)
+};
+
+var marker, circle, lat, long, accuracy;
+
+function getPosition(position) {
+    
+    lat = position.coords.latitude
+    long = position.coords.longitude
+    var coordinate=[lat,long]
+    console.log(coordinate)
+    accuracy = position.coords.accuracy
+
+    if (marker) {
+        map_init.removeLayer(marker)
+    }
+
+    if (circle) {
+        map_init.removeLayer(circle)
+    }
+
+    marker = L.marker([lat, long])
+    circle = L.circle([lat, long], { radius: accuracy })
+
+    var featureGroup = L.featureGroup([marker, circle]).addTo(map_init)
+
+  //  map_init.fitBounds(featureGroup.getBounds())
+  var driver= <%- JSON.stringify(driverId) %>
+  var contact= <%- JSON.stringify(contact) %>
+  var name= <%- JSON.stringify(name) %>
+        //  console.log(driver)
+        //  console.log(lat)
+        // console.log('hello atish')
+         setInterval(()=>{socket.emit("sendLocation",{driverId:driver,latitude:lat,longitude:long,contact:contact,name:name});},1000)
+       // socket.emit("sendLocation",{driverId:driver,latitude:lat,longitude:long});
+        
+  
+
+    console.log("Your coordinate is: Lat: " + lat + " Long: " + long + " Accuracy: " + accuracy)
+}
+         
+    </script>
+<% } %> 
+
+<script>
+//     var LeafIcon = L.Icon({
+//       options: {
+//         iconSize: [30, 40],
+//         iconAnchor: [22, 94],
+//         shadowAnchor: [4, 62],
+//         popupAnchor: [-3, -76],
+// },
+// })
+//     var greenIcon = new LeafIcon({
+//       iconUrl: "https://i.ibb.co/q9bvz5f/electric-car.png",
+//       // shadowUrl: "http://leafletjs.com/examples/custom-icons/leaf-shadow.png",
+// });
+    var markers_array=[];
+socket.on("driverLocation", location =>{
+    var lat1,long1,marker1;
+    lat1=location.latitude;
+    long1=location.longitude;
+    var name=location.name;
+    var contact=location.contact;
+    console.log(lat1,long1,"location recieved")
+    // marker1=L.marker([lat1, long1])
+     var featureGroup 
+    
+    if (!markers_array[location.driverId] ) {
+        markers_array[location.driverId] = L.marker([lat1, long1])
+        L.featureGroup([markers_array[location.driverId]]).addTo(map_init).on('click', ()=>{
+            alert("Drivers Name: "+name+"\nContact No.: "+contact);
+        })
+    } else {
+        map_init.removeLayer(markers_array[location.driverId])
+        markers_array[location.driverId] = L.marker([lat1, long1]);
+        L.featureGroup([markers_array[location.driverId]]).addTo(map_init).on('click', ()=>{
+            alert("Drivers Name: "+name+"\nContact No.: "+contact);
+        })
+    }
+
+})
+</script>
+
+      
+   
+   
