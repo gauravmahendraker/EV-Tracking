@@ -45,7 +45,7 @@ app.use(express.static('public'))
 io.on('connection', (socket) => {
     console.log('a user connected');
     socket.on('sendLocation',(location)=>{
-        console.log(location)
+      //  console.log(location)
         var loc = location
         socket.broadcast.emit("driverLocation",loc)
     })
