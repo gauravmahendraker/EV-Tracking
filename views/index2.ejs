@@ -70,9 +70,19 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <nav class="navbar navbar-expand-lg">
+<<<<<<< HEAD
+                            <% if(locals.response != null && locals.driverId == null ) { %>
+                                <% if(response == true) { %>
+                                  <a class="navbar-brand" href="/admin/track" style="color:white; font-size:bold;">Track</a>
+                                <% } %>
+                            <% } else if(locals.driverId == null) { %>
+                              <a class="navbar-brand" href="/" style="color:white; font-size:bold;">Track</a>
+                            <% } %>
+=======
                             <a class="navbar-brand" href="#">
                                 <img src="/images/logo.png" alt="Logo">
                             </a>
+>>>>>>> main
 
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarEight" aria-controls="navbarEight" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="toggler-icon"></span>
@@ -83,6 +93,59 @@
                             <div class="collapse navbar-collapse sub-menu-bar" id="navbarEight">
                                 <ul class="navbar-nav ml-auto">
                                     <li class="nav-item active">
+<<<<<<< HEAD
+                                        <a class="page-scroll" href="/home">HOME</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <% if(locals.response != null && locals.driverId ==null ) { %>
+                                            <% if(response == true) { %>
+                                            <a class="page-scroll" href="/admin/drivers">Drivers</a>
+                                            <% } %>
+                                        <% } else if(locals.driverId ==null) { %>
+                                            <a class="page-scroll" href="/drivers">Drivers</a>
+                                        <% } %>
+                                    </li>
+                                    <% if( locals.response != null && locals.driverId ==null ) { %>
+                                        <% if(response == true) { %>
+                                          <li class="nav-item">
+                                            <a class="page-scroll" href="/">Logout</a>
+                                          </li>
+                                          <% } else { %>
+                                            <li class="nav-item">
+                                              <a  class="page-scroll" style="cursor:pointer" data-toggle="modal" data-target="#user-modal">Login as Driver</a>
+                                            </li>
+                                          <% } %>
+                                      <% } else if(locals.driverId !=null) { %>
+                                        <% if(driverId != null) { %>
+                                          <li class="nav-item">
+                                            <a class="page-scroll" href="/">Logout as Driver</a>
+                            
+                                          </li>
+                                          <% } else { %>
+                                            <li class="nav-item">
+                                              <button type="button" style="cursor:pointer" class="btn navbut" data-toggle="modal" data-target="#user-modal">Login as Driver</button>
+                                            </li>
+                                          <% } %>
+                                        <% } else { %>
+                                          <li class="nav-item">
+                                            <a class="page-scroll" style="cursor:pointer" data-toggle="modal" data-target="#user-modal">Login as Driver</a>
+                                          </li>
+                                          <% }  %>
+
+                                        <li class="nav-item">
+                                        <% if(locals.response != null ) { %>
+                                            <% if(response == true) { %>
+                                                <a class="page-scroll" style="cursor:pointer" data-toggle="modal" data-target="#add_driver-modal">
+                                                Add driver
+                                                </a>
+                                            <% } %>
+                                        <% } else if(locals.driverId == null) { %>
+                                        <a class="page-scroll" style="cursor:pointer" data-toggle="modal" data-target="#admin-modal">
+                                            Login as Admin
+                                        </a>
+                                        <% } %>
+                                        </li>
+=======
                                         <a class="page-scroll" href="#home">HOME</a>
                                     </li>
                                     <li class="nav-item">
@@ -100,6 +163,7 @@
                                     <li class="nav-item">
                                         <a class="page-scroll" href="#contact">CONTACT</a>
                                     </li>
+>>>>>>> main
                                 </ul>
                             </div>
 
@@ -122,16 +186,25 @@
                     </ol>
 
                     <div class="carousel-inner">
+<<<<<<< HEAD
+                        <div class="carousel-item bg_cover active" style="background-image: url(/images/slider-3.jpg)">
+=======
                         <div class="carousel-item bg_cover active" style="background-image: url(/images/slider-1.jpg)">
+>>>>>>> main
                             <div class="carousel-caption">
                                 <div class="container">
                                     <div class="row justify-content-center">
                                         <div class="col-xl-6 col-lg-7 col-sm-10">
+<<<<<<< HEAD
+                                            <h2 class="carousel-title">Electric Vehicle Tracking IIT INDORE</h2>
+                                            
+=======
                                             <h2 class="carousel-title">Refreshing Design & Easy to Customize</h2>
                                             <ul class="carousel-btn rounded-buttons">
                                                 <li><a class="main-btn rounded-three" href="#">GET STARTED</a></li>
                                                 <li><a class="main-btn rounded-one" href="#">DOWNLOAD</a></li>
                                             </ul>
+>>>>>>> main
                                         </div>
                                     </div> <!-- row -->
                                 </div> <!-- container -->
@@ -143,27 +216,41 @@
                                 <div class="container">
                                     <div class="row justify-content-center">
                                         <div class="col-xl-6 col-lg-7 col-sm-10">
+<<<<<<< HEAD
+                                            <h2 class="carousel-title">Electric Vehicle Tracking IIT INDORE</h2>
+                                          
+=======
                                             <h2 class="carousel-title">Based on Latest Bootstrap & HTML5</h2>
                                             <ul class="carousel-btn rounded-buttons">
                                                 <li><a class="main-btn rounded-three" href="#">GET STARTED</a></li>
                                                 <li><a class="main-btn rounded-one" href="#">DOWNLOAD</a></li>
                                             </ul>
+>>>>>>> main
                                         </div>
                                     </div> <!-- row -->
                                 </div> <!-- container -->
                             </div> <!-- carousel caption -->
                         </div> <!-- carousel-item -->
 
+<<<<<<< HEAD
+                        <div class="carousel-item bg_cover" style="background-image: url(/images/slider-1.jpg)">
+=======
                         <div class="carousel-item bg_cover" style="background-image: url(/images/slider-3.jpg)">
+>>>>>>> main
                             <div class="carousel-caption">
                                 <div class="container">
                                     <div class="row justify-content-center">
                                         <div class="col-xl-6 col-lg-7 col-sm-10">
+<<<<<<< HEAD
+                                            <h2 class="carousel-title">Electric Vehicle Tracking IIT INDORE</h2>
+                                            
+=======
                                             <h2 class="carousel-title">Multi-purpose Landing Page Template</h2>
                                             <ul class="carousel-btn rounded-buttons">
                                                 <li><a class="main-btn rounded-three" href="#">GET STARTED</a></li>
                                                 <li><a class="main-btn rounded-one" href="#">DOWNLOAD</a></li>
                                             </ul>
+>>>>>>> main
                                         </div>
                                     </div> <!-- row -->
                                 </div> <!-- container -->
@@ -186,6 +273,121 @@
 
     <!--====== NAVBAR PART ENDS ======-->
 
+<<<<<<< HEAD
+
+    <!--====== MODAL PART START ======-->
+
+    <div class="modal fade marg" id="admin-modal" tabindex="-1" aria-labelledby="admin-modal" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Enter Details</h1>
+              <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/admin" method="post">
+                    <div class="mb-3">
+                      <label for="username" class="form-label">User name</label>
+                      <input type="text" name="username" value="" class="form-control" id="username" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="password" class="form-label">Password</label>
+                      <input type="password" name="password" value="" class="form-control" id="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade marg" id="user-modal" tabindex="-1" aria-labelledby="user-modal" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Enter Details</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- <form onsubmit="return false;">
+                    <div class="mb-3">
+                      <label for="id" class="form-label">Vehicle No.</label>
+                      <input type="text" class="form-control" id="id" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="name" class="form-label">Name</label>
+                      <input type="text" class="form-control" id="name">
+                    </div>
+                    <div class="mb-3">
+                      <label for="contact" class="form-label">Contact</label>
+                      <input type="text" class="form-control" id="contact">
+                    </div>
+                    <button type="submit" onClick="sendpost()" class="btn btn-primary">Submit</button>
+                  </form> -->
+                  <form action="/" method="post">
+                    <div class="mb-3">
+                      <label for="driverId" class="form-label">Driver Id</label>
+                      <input type="text" name="driverId" class="form-control" id="driverId" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="password" class="form-label">Password</label>
+                      <input type="password" name="password" class="form-control" id="password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade marg" id="add_driver-modal" tabindex="-1" aria-labelledby="add_driver-modal" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Enter Details</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/drivers/new" method="post">
+                    <div class="mb-3">
+                      <label for="driverId" class="form-label">Driver Id</label>
+                      <input type="text" name="driverId" class="form-control" id="driverId" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="driverName" class="form-label">Driver Name</label>
+                      <input type="text" name="driverName" value="" class="form-control" id="driverName">
+                    </div>
+                    <div class="mb-3">
+                      <label for="phoneNo" class="form-label"> Phone No.</label>
+                      <input type="text" name="phoneNo" value="" class="form-control" id="phoneNo">
+                    </div>
+                    <div class="mb-3">
+                      <label for="password" class="form-label">Password.</label>
+                      <input type="password" name="password" value="" class="form-control" id="password">
+                    </div>
+                    <div class="mb-3">
+                      <label for="timingSlot" class="form-label">Timing Slot</label>
+                      <input type="text" name="timingSlot" value="" class="form-control" id="timingSlot">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+=======
+>>>>>>> main
     <!--====== SAIDEBAR PART START ======-->
 
     <div class="sidebar-right">
@@ -234,7 +436,11 @@
             </div> <!-- row -->
             
             <div class="row">
+<<<<<<< HEAD
+                <!-- <div class="col-lg-6">
+=======
                 <div class="col-lg-6">
+>>>>>>> main
                     <div class="single-about d-sm-flex mt-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="1.2s">
                         <div class="about-icon">
                             <img src="/images/icon-1.png" alt="Icon">
@@ -243,8 +449,13 @@
                             <h4 class="about-title">Powerful templates</h4>
                             <p class="text">Poorly designed presentations are a thing of the past. Create beautiful and high-quality content that is aligned.</p>
                         </div>
+<<<<<<< HEAD
+                    </div> 
+                </div> -->
+=======
                     </div> <!-- single about -->
                 </div>
+>>>>>>> main
                 <div class="col-lg-6">
                     <div class="single-about d-sm-flex mt-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="1.4s">
                         <div class="about-icon">
@@ -254,9 +465,15 @@
                             <h4 class="about-title">Designed for everyone</h4>
                             <p class="text">Poorly designed presentations are a thing of the past. Create beautiful and high-quality content that is aligned.</p>
                         </div>
+<<<<<<< HEAD
+                    </div> 
+                </div>
+                <!-- <div class="col-lg-6">
+=======
                     </div> <!-- single about -->
                 </div>
                 <div class="col-lg-6">
+>>>>>>> main
                     <div class="single-about d-sm-flex mt-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="1.6s">
                         <div class="about-icon">
                             <img src="/images/icon-3.png" alt="Icon">
@@ -265,8 +482,13 @@
                             <h4 class="about-title">Work anywhere</h4>
                             <p class="text">Poorly designed presentations are a thing of the past. Create beautiful and high-quality content that is aligned.</p>
                         </div>
+<<<<<<< HEAD
+                    </div> 
+                </div> -->
+=======
                     </div> <!-- single about -->
                 </div>
+>>>>>>> main
                 <div class="col-lg-6">
                     <div class="single-about d-sm-flex mt-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="1.8s">
                         <div class="about-icon">
@@ -296,6 +518,17 @@
                     </div> <!-- row -->
                 </div>
             </div> <!-- row -->
+<<<<<<< HEAD
+            <div class="row grid">
+                <div class="col-lg-4 col-sm-6 branding-2 planning-3">
+                    <div class="single-portfolio mt-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.2s">
+                        <div class="portfolio-image">
+                            <img src="/images/Gaurav.jpg" alt="">
+                            <div class="portfolio-overlay d-flex align-items-center justify-content-center">
+                                <div class="portfolio-content">
+                                    <div class="portfolio-icon">
+                                        <a class="image-popup" href="/images/Gaurav.jpg"><i class="lni-zoom-in"></i></a>
+=======
             <div class="row">
                 <div class="col-lg-12">
                     <div class="portfolio-menu pt-30 text-center">
@@ -318,6 +551,7 @@
                                 <div class="portfolio-content">
                                     <div class="portfolio-icon">
                                         <a class="image-popup" href="/images/portfolio-1.png"><i class="lni-zoom-in"></i></a>
+>>>>>>> main
                                     </div>
                                     <div class="portfolio-icon">
                                         <a href="#"><i class="lni-link"></i></a>
@@ -331,6 +565,16 @@
                         </div>
                     </div> <!-- single portfolio -->
                 </div>
+<<<<<<< HEAD
+                <div class="col-lg-4 col-sm-6 marketing-2 research-3">
+                    <div class="single-portfolio mt-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.4s">
+                        <div class="portfolio-image">
+                            <img src="/images/Atish3.jpg" alt="" style="height:58.7vh">
+                            <div class="portfolio-overlay d-flex align-items-center justify-content-center">
+                                <div class="portfolio-content">
+                                    <div class="portfolio-icon">
+                                        <a class="image-popup" href="/images/Atish3.jpg"><i class="lni-zoom-in"></i></a>
+=======
                 <div class="col-lg-4 col-sm-6 marketing-3 research-3">
                     <div class="single-portfolio mt-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.4s">
                         <div class="portfolio-image">
@@ -339,6 +583,7 @@
                                 <div class="portfolio-content">
                                     <div class="portfolio-icon">
                                         <a class="image-popup" href="/images/portfolio-2.png"><i class="lni-zoom-in"></i></a>
+>>>>>>> main
                                     </div>
                                     <div class="portfolio-icon">
                                         <a href="#"><i class="lni-link"></i></a>
@@ -352,6 +597,16 @@
                         </div>
                     </div> <!-- single portfolio -->
                 </div>
+<<<<<<< HEAD
+                <div class="col-lg-4 col-sm-6 branding-2 marketing-3">
+                    <div class="single-portfolio mt-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.7s">
+                        <div class="portfolio-image">
+                            <img src="/images/Vishnu1.jpg" alt="" style="height:58.7vh">
+                            <div class="portfolio-overlay d-flex align-items-center justify-content-center">
+                                <div class="portfolio-content">
+                                    <div class="portfolio-icon">
+                                        <a class="image-popup" href="/images/Vishnu1.jpg"><i class="lni-zoom-in"></i></a>
+=======
                 <div class="col-lg-4 col-sm-6 branding-3 marketing-3">
                     <div class="single-portfolio mt-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.7s">
                         <div class="portfolio-image">
@@ -360,6 +615,7 @@
                                 <div class="portfolio-content">
                                     <div class="portfolio-icon">
                                         <a class="image-popup" href="/images/portfolio-3.png"><i class="lni-zoom-in"></i></a>
+>>>>>>> main
                                     </div>
                                     <div class="portfolio-icon">
                                         <a href="#"><i class="lni-link"></i></a>
@@ -373,6 +629,16 @@
                         </div>
                     </div> <!-- single portfolio -->
                 </div>
+<<<<<<< HEAD
+                <div class="col-lg-4 col-sm-6 planning-2 research-3">
+                    <div class="single-portfolio mt-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.2s">
+                        <div class="portfolio-image">
+                            <img src="/images/shreyas.jpg" alt="" style="height:58.7vh">
+                            <div class="portfolio-overlay d-flex align-items-center justify-content-center">
+                                <div class="portfolio-content">
+                                    <div class="portfolio-icon">
+                                        <a class="image-popup" href="/images/shreyas.jpg"><i class="lni-zoom-in"></i></a>
+=======
                 <div class="col-lg-4 col-sm-6 planning-3 research-3">
                     <div class="single-portfolio mt-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.2s">
                         <div class="portfolio-image">
@@ -423,6 +689,7 @@
                                 <div class="portfolio-content">
                                     <div class="portfolio-icon">
                                         <a class="image-popup" href="/images/portfolio-6.png"><i class="lni-zoom-in"></i></a>
+>>>>>>> main
                                     </div>
                                     <div class="portfolio-icon">
                                         <a href="#"><i class="lni-link"></i></a>
@@ -436,12 +703,20 @@
                         </div>
                     </div> <!-- single portfolio -->
                 </div>
+<<<<<<< HEAD
+                
+                
+=======
+>>>>>>> main
             </div> <!-- row -->
         </div> <!-- container -->
     </section>
 
     <!--====== portfolio PART ENDS ======-->
     
+<<<<<<< HEAD
+
+=======
     <!--====== PRINICNG STYLE EIGHT START ======-->
 
     <section id="pricing" class="pricing-area">
@@ -522,6 +797,7 @@
     </section>
 
     <!--====== PRINICNG STYLE EIGHT ENDS ======-->
+>>>>>>> main
     
     <!--====== CALL TO ACTION TWO PART START ======-->
 

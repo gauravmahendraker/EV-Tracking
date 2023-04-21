@@ -42,7 +42,7 @@ router.post('/', async (req, res)=>{
                 const users = await Driver.find(sop);
                 if(users != null){
                    // console.log(users[0].driverId)
-                    res.render('index', {driverId:users[0].driverId})
+                    res.render('index', {driverId:users[0].driverId, contact:users[0].phoneNo, name:users[0].driverName})
                 } else {
                     res.render('index')
                 }
