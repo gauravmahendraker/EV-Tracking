@@ -78,7 +78,12 @@ crossorigin=""></script>
 
 <script>
 
+var southWest = L.latLng(22.530, -180),
+northEast = L.latLng(22.520, 180);
+var bounds = L.latLngBounds(southWest, northEast);
+
 var map_init = L.map('map', {
+    maxBounds: bounds,
     center: [22.525, 75.925],
     zoom: 15.4
 });
