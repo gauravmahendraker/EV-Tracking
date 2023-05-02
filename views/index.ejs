@@ -129,11 +129,11 @@ socket.on("driverLocation", location =>{
     
     if (!markers_array[location.driverId] ) {
         markers_array[location.driverId] = L.marker([lat1, long1],{icon : greenIcon})
-        L.featureGroup([markers_array[location.driverId]]).addTo(map_init).bindPopup(name+" "+ contact)
+        L.featureGroup([markers_array[location.driverId]]).bindPopup(name+" "+ contact).addTo(map_init)
     } else {
         map_init.removeLayer(markers_array[location.driverId])
         markers_array[location.driverId] = L.marker([lat1, long1],{icon : greenIcon});
-        L.featureGroup([markers_array[location.driverId]]).addTo(map_init).bindPopup(name+" "+ contact)
+        L.featureGroup([markers_array[location.driverId]]).bindPopup(name+" "+ contact).addTo(map_init)
     }
 
 })
