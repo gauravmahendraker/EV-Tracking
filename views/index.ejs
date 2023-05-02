@@ -128,11 +128,16 @@ socket.on("driverLocation", location =>{
      var featureGroup 
     
     if (!markers_array[location.driverId] ) {
-        markers_array[location.driverId] = L.marker([lat1, long1],{icon : greenIcon}).bindPopup(name+" "+ contact);
-
+        markers_array[location.driverId] = L.marker([lat1, long1],{icon : greenIcon})
+        L.featureGroup([markers_array[location.driverId]]).addTo(map_init).on('click', ()=>{
+            alert("Drivers Name: "+name+"\nContact No.: "+contact);
+        })
     } else {
         map_init.removeLayer(markers_array[location.driverId])
-        markers_array[location.driverId] = L.marker([lat1, long1],{icon : greenIcon}).bindPopup(name+" "+ contact);
+        markers_array[location.driverId] = L.marker([lat1, long1],{icon : greenIcon});
+        L.featureGroup([markers_array[location.driverId]]).addTo(map_init).on('click', ()=>{
+            alert("Drivers Name: "+name+"\nContact No.: "+contact);
+        })
     }
 
 })
