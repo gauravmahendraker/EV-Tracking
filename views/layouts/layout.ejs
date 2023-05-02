@@ -78,12 +78,13 @@ crossorigin=""></script>
 
 <script>
 
-var southWest = L.latLng(22.530, 75.924),
-northEast = L.latLng(22.520, 75.926);
+var southWest = L.latLng(22.531, 75.924),
+northEast = L.latLng(22.519, 75.926);
 var bounds = L.latLngBounds(southWest, northEast);
 
 var map_init = L.map('map', {
     maxBounds: bounds,
+    center: [22.525, 75.925],
     zoom: 15.4
 });
 var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
