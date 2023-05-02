@@ -81,7 +81,6 @@ function getPosition(position) {
   var name= <%- JSON.stringify(name) %>
         //  console.log(driver)
         //  console.log(lat)
-        // console.log('hello atish')
          setInterval(()=>{socket.emit("sendLocation",{driverId:driver,latitude:lat,longitude:long,contact:contact,name:name});},1000)
        // socket.emit("sendLocation",{driverId:driver,latitude:lat,longitude:long});
         
@@ -129,16 +128,11 @@ socket.on("driverLocation", location =>{
      var featureGroup 
     
     if (!markers_array[location.driverId] ) {
-        markers_array[location.driverId] = L.marker([lat1, long1],{icon : greenIcon})
-        L.featureGroup([markers_array[location.driverId]]).addTo(map_init).on('click', ()=>{
-            alert("Drivers Name: "+name+"\nContact No.: "+contact);
-        })
+        markers_array[location.driverId] = L.marker([lat1, long1],{icon : greenIcon}).bindPopup(name+" "+ contact);
+
     } else {
         map_init.removeLayer(markers_array[location.driverId])
-        markers_array[location.driverId] = L.marker([lat1, long1],{icon : greenIcon});
-        L.featureGroup([markers_array[location.driverId]]).addTo(map_init).on('click', ()=>{
-            alert("Drivers Name: "+name+"\nContact No.: "+contact);
-        })
+        markers_array[location.driverId] = L.marker([lat1, long1],{icon : greenIcon}).bindPopup(name+" "+ contact);
     }
 
 })
