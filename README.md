@@ -47,6 +47,22 @@ Website hosted temporarily at https://ev-tracking-production-dbe3.up.railway.app
 - It is the leading open-source JavaScript library for mobile-friendly interactive maps.
 - Simple, performant, and usable.
 
+## Common setup
+
+Clone the repo and install the dependencies.
+
+```bash
+git clone https://github.com/contentful/the-example-app.nodejs.git
+
+```
+
+```bash
+npm install
+```
+```bash
+npm run devStart
+```
+The Server will start running.
 
 
 
