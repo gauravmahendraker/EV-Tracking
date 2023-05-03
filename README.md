@@ -21,6 +21,9 @@ The website aims to provide students, visitors, and faculty of the campus with a
 + Firefox >= 3.5
 + Safari  >= 5.0
 + Opera   >= 16.0
+<br>
+
+Website hosted temporarily at https://ev-tracking-production-dbe3.up.railway.app/home.
 
 # Challenges Faced:
 1. The primary challenge was to provide a real-time tracking solution, i.e, to a lag-free experience that was as accurate as possible.
