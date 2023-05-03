@@ -52,7 +52,7 @@ Website hosted temporarily at https://ev-tracking-production-dbe3.up.railway.app
 Clone the repo and install the dependencies.
 
 ```bash
-git clone https://github.com/contentful/the-example-app.nodejs.git
+git clone https://github.com/gauravmahendraker/EV-Tracking.git
 
 ```
 
