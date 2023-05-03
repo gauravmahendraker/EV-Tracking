@@ -41,7 +41,8 @@ The website aims to provide students, visitors, and faculty of the campus with a
 - Socket.IO primarily uses the WebSocket protocol with polling as a fallback option.
 - Socket.IO allows broadcasting to multiple sockets, storing data associated with each client, and asynchronous I/O.
 5. Leaflet js:
-- 
+- It is the leading open-source JavaScript library for mobile-friendly interactive maps.
+- Simple, performant, and usable.
 
 
 
