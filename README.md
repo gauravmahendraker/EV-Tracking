@@ -62,7 +62,7 @@ npm install
 ```bash
 npm run devStart
 ```
-The Server will start running.
+The Server will start running on your Machine.
 
 
 
