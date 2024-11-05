@@ -43,9 +43,14 @@ Website hosted temporarily at https://ev-tracking-production-dbe3.up.railway.app
 - It enables real-time, bi-directional and low-latency communication between web clients and servers.
 - Socket.IO primarily uses the WebSocket protocol with polling as a fallback option.
 - Socket.IO allows broadcasting to multiple sockets, storing data associated with each client, and asynchronous I/O.
-5. Leaflet js:
+5.Redis Pub/Sub:
+- Redis Pub/Sub provides an efficient in-memory messaging system that enables real-time message broadcasting across multiple servers.
+- It is used for handling high-throughput, low-latency data sharing, making it ideal for multi-server setups where live updates (like EV locations) need to be shared instantly with clients on different servers.
+- Redis enhances scalability by allowing different server instances to synchronize and distribute location updates effectively.
+6. Leaflet js:
 - It is the leading open-source JavaScript library for mobile-friendly interactive maps.
 - Simple, performant, and usable.
+
 
 ## Common setup
 
